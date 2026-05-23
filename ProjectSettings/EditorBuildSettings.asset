@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/GeneratedMap.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0a847c64595b2384885c4a41a5d4507a, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: e57c63bf4e70902409a5c928ffe9c057, type: 2}
