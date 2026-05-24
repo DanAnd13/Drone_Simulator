@@ -1,5 +1,7 @@
+using Mapbox.Map;
 using Mapbox.Unity;
 using Mapbox.Unity.Map;
+using Mapbox.Unity.Map.Interfaces;
 using Mapbox.Utils;
 using System;
 using System.Collections;
@@ -25,14 +27,12 @@ public class MapboxRuntimeController : MonoBehaviour
             yield break;
         }
 
-        bool isValid = false;
-
         yield return _validator.Validate(token, result =>
         {
-            isValid = result;
+            TokenState.SetValid(result);
         });
 
-        if (!isValid)
+        if (!TokenState.IsValid)
         {
             Debug.LogError("[MAPBOX] Token invalid");
             yield break;
@@ -42,41 +42,14 @@ public class MapboxRuntimeController : MonoBehaviour
 
         MapboxAccess.Instance.Configuration.AccessToken = token;
 
-        yield return ResetAndReinitialize();
-
         Debug.Log("[MAPBOX] Restored");
     }
 
-    private IEnumerator ResetAndReinitialize()
+    public IEnumerator SoftRefresh()
     {
-        Debug.Log("[MAPBOX] HARD REFRESH (reinitialize map)");
-
-        yield return null;
-
         Vector2d center = _map.CenterLatitudeLongitude;
-        float zoom = _map.Zoom;
 
-        //map.Initialize(center, (int)zoom);
-        //StartCoroutine(ForceMaterialRefresh());
-        yield return null;
-    }
-
-    private IEnumerator ForceMaterialRefresh()
-    {
-        yield return null;
-
-        var renderers = FindObjectsOfType<MeshRenderer>();
-
-        foreach (var r in renderers)
-        {
-            foreach (var mat in r.materials)
-            {
-                if (mat != null && mat.shader != null)
-                {
-                    mat.shader = Shader.Find(mat.shader.name);
-                }
-            }
-        }
+        _map.UpdateMap(center);
 
         yield return null;
     }

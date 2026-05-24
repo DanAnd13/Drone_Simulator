@@ -27,7 +27,7 @@ public class RecoveryManager : MonoBehaviour
 
         MapboxAccess.Instance.Configuration.AccessToken = token;
 
-        yield return _mapController.RestoreMapbox(token);
+        yield return _mapController.SoftRefresh();
 
         _isRecovering = false;
     }
