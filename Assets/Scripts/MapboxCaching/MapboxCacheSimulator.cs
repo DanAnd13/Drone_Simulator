@@ -6,6 +6,7 @@ using UnityEngine;
 public class MapboxCacheSimulator : MonoBehaviour
 {
     [SerializeField] private Transform _viewer;
+    [SerializeField] private TileRegistry _tileRegistry;
 
     private CachePolicy _policy = new CachePolicy();
 
@@ -16,7 +17,7 @@ public class MapboxCacheSimulator : MonoBehaviour
 
     private void SimulateCache()
     {
-        foreach (var tile in TileRegistry.Instance.GetAll())
+        foreach (var tile in _tileRegistry.GetAll())
         {
             if (tile == null)
             {

@@ -7,6 +7,7 @@ using UnityEngine;
 public class MapboxTileHook : MonoBehaviour
 {
     [SerializeField] private AbstractMap _map;
+    [SerializeField] private TileRegistry _tileRegistry;
 
     private void OnEnable()
     {
@@ -20,6 +21,6 @@ public class MapboxTileHook : MonoBehaviour
 
     private void OnTile(UnityTile tile)
     {
-        TileRegistry.Instance.Register(tile);
+        _tileRegistry.Register(tile);
     }
 }
