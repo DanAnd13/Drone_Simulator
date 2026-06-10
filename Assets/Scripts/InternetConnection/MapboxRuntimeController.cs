@@ -47,6 +47,26 @@ public class MapboxRuntimeController : MonoBehaviour
 
     public IEnumerator SoftRefresh()
     {
+        string token = TokenStorage.LoadToken();
+
+        if (string.IsNullOrEmpty(token))
+        {
+            token = MapboxAccess.Instance.Configuration.AccessToken;
+        }
+
+        yield return _validator.Validate(token, result =>
+        {
+            TokenState.SetValid(result);
+        });
+
+        if (!TokenState.IsValid)
+        {
+            Debug.LogError("[MAPBOX] Token invalid");
+            yield break;
+        }
+
+        TokenStorage.SaveToken(token);
+
         Vector2d center = _map.CenterLatitudeLongitude;
 
         _map.UpdateMap(center);

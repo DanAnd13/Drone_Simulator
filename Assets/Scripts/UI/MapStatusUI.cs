@@ -58,7 +58,7 @@ public class MapStatusUI : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer < 2f) return; // не спамимо API
+        if (timer < 2f) return;
         timer = 0f;
 
         if (map == null) return;
@@ -74,6 +74,8 @@ public class MapStatusUI : MonoBehaviour
             Application.internetReachability != NetworkReachability.NotReachable;
 
         networkText.text = online ? "ONLINE" : "OFFLINE";
+
+        TokenState.SetValid(online);
     }
 
     private void OnTokenChanged(bool valid)
