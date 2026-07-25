@@ -242,7 +242,9 @@ namespace Mapbox.Map
 				}
 			}
 			_callback();
-		}
+
+            ExperimentLogger.Instance?.LogTileRequest(ExperimentTimer.Instance.ElapsedMilliseconds, _id.ToString(), !response.HasError, response.LoadedFromCache, response.StatusCode, response.ExceptionsAsString);
+        }
 
 
 		/// <summary>
