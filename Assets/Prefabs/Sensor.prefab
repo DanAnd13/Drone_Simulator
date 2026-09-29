@@ -265,11 +265,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 7331385079236127400}
   _inactiveColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  _activeColor: {r: 1, g: 0.74664944, b: 0, a: 1}
-  _correctColor: {r: 0, g: 1, b: 0, a: 1}
-  _wrongColor: {r: 1, g: 0, b: 0, a: 1}
+  _activeColor: {r: 1, g: 0.16443026, b: 0, a: 1}
   _activeDuration: 2
-  _resultDuration: 0.5
 --- !u!114 &1865426904341186452
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,12 +26,12 @@ public class NetworkScenario : MonoBehaviour
 
     private IEnumerator RunScenario()
     {
-        yield return new WaitForSeconds(_disconnectTime);
+        yield return new WaitForSeconds(_disconnectTime);//очікуавання 10 секунд для вимкнення
         IsDisconnected = true;
         Debug.Log("[NETWORK] Disable Ethernet");
         ExecuteNetsh($"interface set interface \"{_adapterName}\" admin=disable");
 
-        yield return new WaitForSeconds(_reconnectDelay);
+        yield return new WaitForSeconds(_reconnectDelay);//очікування 5 секунд для ввімкнення
 
         Debug.Log("[NETWORK] Enable Ethernet");
         ExecuteNetsh($"interface set interface \"{_adapterName}\" admin=enable");
