@@ -3,67 +3,62 @@ using UnityEngine.InputSystem;
 
 public class DroneInputTester : MonoBehaviour
 {
-    [Header("Drone Input Actions")]
-    [SerializeField] private InputActionReference moveStick;
-    [SerializeField] private InputActionReference moveUp;
-    [SerializeField] private InputActionReference moveDown;
-
-    [SerializeField] private InputActionReference rotateStick;
-    [SerializeField] private InputActionReference rotateZRight;
-    [SerializeField] private InputActionReference rotateZLeft;
+    [SerializeField] private DroneInput _droneInput;
 
     private void OnEnable()
     {
-        EnableAction(moveStick);
-        EnableAction(moveUp);
-        EnableAction(moveDown);
+        EnableAction(_droneInput.moveStick);
+        EnableAction(_droneInput.moveUp);
+        EnableAction(_droneInput.moveDown);
 
-        EnableAction(rotateStick);
-        EnableAction(rotateZRight);
-        EnableAction(rotateZLeft);
+        EnableAction(_droneInput.rotateStick);
+        EnableAction(_droneInput.rotateZRight);
+        EnableAction(_droneInput.rotateZLeft);
     }
 
     private void OnDisable()
     {
-        DisableAction(moveStick);
-        DisableAction(moveUp);
-        DisableAction(moveDown);
+        DisableAction(_droneInput.moveStick);
+        DisableAction(_droneInput.moveUp);
+        DisableAction(_droneInput.moveDown);
 
-        DisableAction(rotateStick);
-        DisableAction(rotateZRight);
-        DisableAction(rotateZLeft);
+        DisableAction(_droneInput.rotateStick);
+        DisableAction(_droneInput.rotateZRight);
+        DisableAction(_droneInput.rotateZLeft);
     }
 
     private void Update()
     {
-        TestStick("Move", moveStick);
-        TestButton("MoveUp", moveUp);
-        TestButton("MoveDown", moveDown);
+        TestStick("Move", _droneInput.moveStick);
+        TestButton("MoveUp", _droneInput.moveUp);
+        TestButton("MoveDown", _droneInput.moveDown);
 
-        TestStick("Rotate", rotateStick);
-        TestButton("RotateZRight", rotateZRight);
-        TestButton("RotateZLeft", rotateZLeft);
+        TestStick("Rotate", _droneInput.rotateStick);
+        TestButton("RotateZRight", _droneInput.rotateZRight);
+        TestButton("RotateZLeft", _droneInput.rotateZLeft);
     }
 
     private void TestStick(string fieldName, InputActionReference action)
     {
         if (action == null)
+        {
             return;
+        }
 
         Vector2 value = action.action.ReadValue<Vector2>();
 
         if (value.sqrMagnitude > 0.0001f)
         {
-            Debug.Log(
-                $"{fieldName}: X = {value.x:F2}, Y = {value.y:F2}"
-            );
+            Debug.Log($"{fieldName}: X = {value.x:F2}, Y = {value.y:F2}");
         }
     }
 
     private void TestButton(string fieldName, InputActionReference action)
     {
         if (action == null)
+        {
             return;
+        }
 
         if (action.action.IsPressed())
         {
@@ -74,12 +69,16 @@ public class DroneInputTester : MonoBehaviour
     private void EnableAction(InputActionReference action)
     {
         if (action != null)
+        {
             action.action.Enable();
+        }
     }
 
     private void DisableAction(InputActionReference action)
     {
         if (action != null)
+        {
             action.action.Disable();
+        }
     }
 }
