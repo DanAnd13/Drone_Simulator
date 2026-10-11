@@ -149,22 +149,31 @@ namespace Mapbox.Unity.MeshGeneration.Data
 			}
 		}
 		private TilePropertyState _tileState = TilePropertyState.None;
-		public TilePropertyState TileState
-		{
-			get
-			{
-				return _tileState;
-			}
-			set
-			{
-				if (_tileState != value)
-				{
-					_tileState = value;
-				}
-			}
-		}
+        public TilePropertyState TileState
+        {
+            get
+            {
+                return _tileState;
+            }
+            set
+            {
+                if (_tileState != value)
+                {
+                    _tileState = value;
 
-		public event Action<UnityTile> OnHeightDataChanged = delegate { };
+                    if (_tileState == TilePropertyState.Loading)
+                    {
+                        TileExperimentTracker.Instance?.RegisterTileLoading(CanonicalTileId.ToString());
+                    }
+                    else if (_tileState == TilePropertyState.Loaded)
+                    {
+                        TileExperimentTracker.Instance?.RegisterTileFullyLoaded(CanonicalTileId.ToString());
+                    }
+                }
+            }
+        }
+
+        public event Action<UnityTile> OnHeightDataChanged = delegate { };
 		public event Action<UnityTile> OnRasterDataChanged = delegate { };
 		public event Action<UnityTile> OnVectorDataChanged = delegate { };
 
