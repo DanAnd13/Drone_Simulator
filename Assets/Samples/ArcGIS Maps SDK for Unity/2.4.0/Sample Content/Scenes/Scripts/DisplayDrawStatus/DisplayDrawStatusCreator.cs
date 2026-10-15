@@ -66,5 +66,5 @@ public class DisplayDrawStatusCreator : MonoBehaviour
 		var angles = progressIndicator.rectTransform.eulerAngles;
 		angles.z += rotationSpeed * Time.deltaTime;
 		progressIndicator.rectTransform.eulerAngles = angles;
-	}
+    }
 }

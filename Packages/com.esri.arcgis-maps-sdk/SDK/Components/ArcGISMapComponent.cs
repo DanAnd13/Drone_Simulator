@@ -761,7 +761,6 @@ namespace Esri.ArcGISMapsSDK.Components
 				for (ulong j = 0; j < internalLayers.GetSize(); j++)
 				{
 					var internalLayer = internalLayers.At(j);
-
 					// Look for a API layer whose immutable properties match the layer definition
 					if (internalLayer.Source == layer.Source &&
 						(int)internalLayer.ObjectType == (int)layer.Type &&
@@ -1619,7 +1618,6 @@ namespace Esri.ArcGISMapsSDK.Components
 				Debug.LogWarning("Invalid layer passed to zoom to layer");
 				return false;
 			}
-
 			if (layer.LoadStatus != ArcGISLoadStatus.Loaded)
 			{
 				if (layer.LoadStatus == ArcGISLoadStatus.NotLoaded)

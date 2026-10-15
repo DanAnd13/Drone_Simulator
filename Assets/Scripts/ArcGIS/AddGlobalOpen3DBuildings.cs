@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 using Esri.ArcGISMapsSDK.Components;
@@ -7,9 +6,14 @@ using Esri.Unity;
 
 public class AddGlobalOpen3DBuildings : MonoBehaviour
 {
+    [Header("ArcGIS")]
     [SerializeField] private ArcGISMapComponent _mapComponent;
 
-    [SerializeField] private float _opacity = 1.0f;
+    [Header("Layer")]
+    [SerializeField, Range(0f, 1f)] private float _opacity = 1f;
+    [SerializeField] private Material _distanceFadeMaterial;
+
+    private ArcGIS3DObjectSceneLayer _buildingsLayer;
 
     private IEnumerator Start()
     {
@@ -25,6 +29,7 @@ public class AddGlobalOpen3DBuildings : MonoBehaviour
         }
 
         float elapsed = 0f;
+
         while ((_mapComponent.Map == null || _mapComponent.Map.LoadStatus.ToString() != "Loaded") && elapsed < 60f)
         {
             elapsed += Time.unscaledDeltaTime;
@@ -32,6 +37,7 @@ public class AddGlobalOpen3DBuildings : MonoBehaviour
         }
 
         var map = _mapComponent.Map;
+
         if (map == null || map.LoadStatus.ToString() != "Loaded")
         {
             Debug.LogError("[Global Buildings] Map did not load.");
@@ -39,8 +45,18 @@ public class AddGlobalOpen3DBuildings : MonoBehaviour
         }
 
         const string source = "https://www.arcgis.com/home/item.html" + "?id=c444b24b184c4523a5dc96248bfea4e1";
-        var buildingsLayer = new ArcGIS3DObjectSceneLayer(source, "Open 3D Buildings - Global", _opacity, true, "");
-        map.Layers.Add(buildingsLayer);
-        Debug.Log("[Global Buildings] Layer added. " + "Waiting for the layer view state.");
+        _buildingsLayer = new ArcGIS3DObjectSceneLayer(source, "Open 3D Buildings - Global", _opacity, true, "");
+
+        if (_distanceFadeMaterial != null)
+        {
+            _buildingsLayer.MaterialReference = _distanceFadeMaterial;
+        }
+        else
+        {
+            Debug.LogWarning("[Global Buildings] Distance fade material not assigned. " + "Using default layer material.");
+        }
+
+        map.Layers.Add(_buildingsLayer);
+        Debug.Log("[Global Buildings] Layer added with default streaming. " + "Layer opacity will not be modified at runtime.");
     }
 }

@@ -14,6 +14,7 @@
 // email: legal@esri.com
 using System.Runtime.InteropServices;
 using System;
+using System.Diagnostics;
 
 namespace Esri.GameEngine.Layers.Base
 {

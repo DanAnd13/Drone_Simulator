@@ -184,8 +184,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.5
+  far clip plane: 138335.33
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -212,8 +212,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48256896}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24199486, y: 0.44387266, z: -0.12823781, w: 0.85321194}
-  m_LocalPosition: {x: -4644.464, y: 2905.8901, z: -34302.402}
+  m_LocalRotation: {x: 0.24211434, y: 0.4437858, z: -0.12826726, w: 0.85321885}
+  m_LocalPosition: {x: -3381.414, y: 1411.8689, z: -33322.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -232,9 +232,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position:
-    X: -74.054921
-    Y: 40.691242
-    Z: 3000
+    X: -74.04
+    Y: 40.7
+    Z: 1500
     SRWkid: 4326
     SpatialReference:
       WKID: 4326
@@ -262,10 +262,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpdateClippingPlanes: 1
   UseCameraViewportProperties: 1
-  verticalFov: 0
-  horizontalFov: 0
-  viewportSizeX: 0
-  viewportSizeY: 0
+  verticalFov: 60
+  horizontalFov: 102.71453
+  viewportSizeX: 1289
+  viewportSizeY: 595
   qualityScalingFactor: 3
 --- !u!114 &48256902
 MonoBehaviour:
@@ -325,15 +325,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsInitialized: 1
   m_LocalPosition:
-    x: 1331077.970749735
-    y: 4138441.2858422627
-    z: -4658870.447933888
+    x: 1331804.0479876522
+    y: 4138200.8644819325
+    z: -4656820.29191079
   m_LocalRotation:
     value:
-      x: -0.0904569
-      y: 0.22529523
-      z: -0.31643108
-      w: 0.9170229
+      x: -0.09035336
+      y: 0.22519708
+      z: -0.3164072
+      w: 0.91706544
   m_LocalScale:
     x: 1
     y: 1
@@ -564,7 +564,7 @@ MonoBehaviour:
     - Name: Terrain 3D
       Type: 0
       Source: https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer
-      IsEnabled: 1
+      IsEnabled: 0
       Authentication:
         ConfigurationIndex: 0
       AuthenticationType: 1
@@ -607,7 +607,7 @@ MonoBehaviour:
   configurations: []
   oauthUserConfigurations: []
   version: 4
-  dataFetchWithSceneView: 1
+  dataFetchWithSceneView: 0
   editorModeEnabled: 1
   rebaseWithSceneView: 0
   RootChanged:
@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 1592048204}
   - component: {fileID: 1592048206}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Buildings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -690,7 +690,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592048203}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35655f8c10fe3064ca25a6535efd3494, type: 3}
   m_Name: 
@@ -722,8 +722,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f79e7f96499fc542a342a426534fd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapComponent: {fileID: 1224303055}
-  opacity: 1
+  _mapComponent: {fileID: 1224303055}
+  _opacity: 1
+  _distanceFadeMaterial: {fileID: 2100000, guid: 8ba8f6a37c9e5f148b57867caf8d21b5, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
